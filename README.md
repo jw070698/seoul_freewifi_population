@@ -14,9 +14,11 @@
   - 서울시 공공와이파이 서비스 위치 정보
     - SeoulWifi_Scrapping.R : 서울시 공공와이파이 서비스 위치 정보 스크래핑
     - SeoulWifi.csv : 스크래핑되어 저장된 데이터
+
 - step2 : 공공데이터 기초 탐색
   - 서울시 공공와이파이 서비스 위치 정보
     - SeoulWifi_EDA.R :   
+
 - step3 : 대시보드 생성
   - DashBoard.R 
     1. 지도 : 서울시의 자치구별 공공와이파이 설치 현황</br>
