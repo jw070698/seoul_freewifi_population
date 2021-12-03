@@ -22,7 +22,7 @@
 - step3 : 대시보드 생성
   - DashBoard.R 
     1. 지도 : 서울시의 자치구별 공공와이파이 설치 현황</br>
-    ![1 지도](https://user-images.githubusercontent.com/75953480/144628706-f7e3bea1-2baa-41c1-bfd0-edb213c158c8.png)
+    <img src="https://user-images.githubusercontent.com/75953480/144628706-f7e3bea1-2baa-41c1-bfd0-edb213c158c8.png" width="400" height="200"/>
     2. 시계열 : 서울시의 자치구별 연도에 따른 공공와이파이 개수 현황 
     3. 히트맵 : 서울시 공공와이파이 서비스 위치 정보와 행정동별 서울생활인구의 연관성
     4. 버블차트 : 서울시의 자치구별 총생활인구수
