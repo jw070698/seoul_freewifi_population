@@ -6,13 +6,15 @@ library(dplyr)
 
 SeoulWifi.df<-read.csv("SeoulWifi.csv")
 str(SeoulWifi.df)
+head(SeoulWifi.df)
+dim(SeoulWifi.df)
 SeoulWifi.df$id<-as.numeric(SeoulWifi.df$id)
 View(SeoulWifi.df)
 'gu_count<-SeoulWifi.df %>%
   group_by(id, 위도, 경도) %>%
   summarise(count=n())'
 
-## 년도 상관없이 자치구별 공공와이파이 설치현황
+## 년도 상관없이(전체누적) 자치구별 공공와이파이 설치현황
 gu_count<-SeoulWifi.df%>%
   group_by(id)%>%
   summarise(n=n())
@@ -32,14 +34,56 @@ gu_count <- gu_count %>% mutate(name= case_when(
 ))
 
 # 년도별 자치구별 공공와이파이 설치현황
-gu_year <- SeoulWifi.df %>% 
-  group_by(설치년도,자치구) %>% 
+# 2019년 누적 
+gu_2019 <- SeoulWifi.df %>% 
+  filter(설치년도<=2019) %>% 
+  group_by(자치구) %>% 
   summarise(n=n())
+View(gu_2019)
+## 2019년 누적 히스토그램
+ggplot(data= gu_2019, aes(x = reorder(자치구,-n), y=n)) +geom_col()
 
-#SeoulWifi.df<-SeoulWifi.df %>% filter(설치년도>=2018)
-## 히스토그램
-ggplot(data= gu_year, aes(x = reorder(자치구,-n), y=n)) +geom_col()
-ggplot(data= gu_count, aes(x = reorder(name,-n), y=n)) +geom_col()
+## 2019년만 히스토그램
+gu_19only <- SeoulWifi.df %>% 
+  filter(설치년도==2019) %>% 
+  group_by(자치구) %>% 
+  summarise(n=n())
+View(gu_19only)
+ggplot(data=gu_19only, aes(x = reorder(자치구,-n),y=n)) +geom_col()
+
+# 2020년 누적
+gu_2020 <- SeoulWifi.df %>% 
+  filter(설치년도<=2020) %>% 
+  group_by(자치구) %>% 
+  summarise(n=n())
+View(gu_2020)
+## 2020년 누적 히스토그램
+ggplot(data= gu_2020, aes(x = reorder(자치구,-n), y=n)) +geom_col()
+
+## 2020년만 히스토그램
+gu_20only <- SeoulWifi.df %>% 
+  filter(설치년도==2020) %>% 
+  group_by(자치구) %>% 
+  summarise(n=n())
+View(gu_20only)
+ggplot(data=gu_20only, aes(x = reorder(자치구,-n),y=n)) +geom_col()
+
+# 2021년 누적
+gu_2021 <- SeoulWifi.df %>% 
+  filter(설치년도<=2021) %>% 
+  group_by(자치구) %>% 
+  summarise(n=n())
+View(gu_2021)
+## 2021년 누적 히스토그램
+ggplot(data= gu_2021, aes(x = reorder(자치구,-n), y=n)) +geom_col()
+
+## 2021년만 히스토그램
+gu_21only <- SeoulWifi.df %>% 
+  filter(설치년도==2021) %>% 
+  group_by(자치구) %>% 
+  summarise(n=n())
+View(gu_21only)
+ggplot(data=gu_21only, aes(x = reorder(자치구,-n),y=n)) +geom_col()
 
 ## 지도 시각화
 library(ggmap)
