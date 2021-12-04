@@ -47,9 +47,11 @@
     <img src="https://user-images.githubusercontent.com/75953480/144721693-b7e99609-4573-40be-b484-f6ee17d366c8.jpeg" width="550" height="250"/></br>
     7. 2021년 11월 서울시의 자치구별 총생활인구수 현황</br>
     <img src="https://user-images.githubusercontent.com/75953480/144724546-88fb3ef8-6cb3-45cf-81df-8f3dc0b57964.jpeg" width="600" height="150"/></br>
-## 4. 아쉬운 점 및 Future job
+## 4. 결론
+
+## 5. 아쉬운 점 및 Future job
 - 공공데이터에 최신 데이터가 추가된다면 더 정확한 분석이 가능할 것으로 기대한다.
 - 서울생활인구 데이터 사용에 너무 많은 시간이 걸려 기간을 축소하여 사용하였는데, 기간을 확장하여 분석하면 더 좋은 결과를 낼 수 있을 것이다.
-## 5. 개발 환경
+## 6. 개발 환경
 - R Studio
 - R Shiny
