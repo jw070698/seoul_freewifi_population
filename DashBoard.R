@@ -1,15 +1,15 @@
-# 3. ½Ã°¢È­ ¹× ´ë½Ãº¸µå(Rshiny) - ÀÎ»çÀÌÆ® µµÃâ
+# 3. ì‹œê°í™” ë° ëŒ€ì‹œë³´ë“œ(Rshiny) - ì¸ì‚¬ì´íŠ¸ ë„ì¶œ ####
 library(shiny)
 library(shinydashboard)
 #library(repr)
 #library(shinycssloaders)
 
 #source("SeoulWifi_EDA.r")
-load("Wifi_map_merge.rda") ##±Ùµ¥ ÀúÀåµÇ¾îÀÖ¾î¾ßÇÔ......¤Ì¤Ì
+load("Wifi_map_merge.rda") ##ê·¼ë° ì €ì¥ë˜ì–´ìˆì–´ì•¼í•¨......ã…œã…œ
 gu_name<-read.csv("gu_name.csv")
 
 ui <- dashboardPage(
-  dashboardHeader(title="À¯µ¿ÀÎ±¸¼ö¸¦ ÅëÇÑ ¿ÍÀÌÆÄÀÌ Ãß°¡ÀûÀÎ ¼³Ä¡ ÇÊ¿ä Áö¿ª Å½»ö", titleWidth=600),
+  dashboardHeader(title="ìœ ë™ì¸êµ¬ìˆ˜ë¥¼ í†µí•œ ì™€ì´íŒŒì´ ì¶”ê°€ì ì¸ ì„¤ì¹˜ í•„ìš” ì§€ì—­ íƒìƒ‰", titleWidth=600),
   dashboardSidebar(
     sidebarMenu(
       menuItem("Charts",
@@ -21,11 +21,11 @@ ui <- dashboardPage(
     fluidRow(
       box(
         radioButtons(inputId = "year",
-                     "¿¬µµ¸¦ °í¸£¼¼¿ä",
+                     "ì—°ë„ë¥¼ ê³ ë¥´ì„¸ìš”",
                      list(2019,2020,2021)
         ), width=1
       ),
-      box(title="¼­¿ï½Ã ±¸º° °ø°ø¿ÍÀÌÆÄÀÌ",status="primary",solidHeader=TRUE,collapsible=TRUE,
+      box(title="ì„œìš¸ì‹œ êµ¬ë³„ ê³µê³µì™€ì´íŒŒì´",status="primary",solidHeader=TRUE,collapsible=TRUE,
           plotOutput(outputId = "map", width=600),
           plotOutput(outputId = ""),
           width=5)
@@ -47,8 +47,8 @@ server <- function(input, output) {
   plot <- reactive({
     #options(repr.plot.width = 300, repr.plot.height = 100)
     
-    ggplot() + geom_polygon(data = merge[merge$¼³Ä¡³âµµ==input$year,], aes(x=long, y=lat, group=group, fill = cum_count)) +
-      labs(fill="¼³Ä¡ ´©Àû °³¼ö")+
+    ggplot() + geom_polygon(data = merge[merge$ì„¤ì¹˜ë…„ë„==input$year,], aes(x=long, y=lat, group=group, fill = cum_count)) +
+      labs(fill="ì„¤ì¹˜ ëˆ„ì  ê°œìˆ˜")+
       geom_text(data=gu_name, aes(x=long, y=lat, label=gu))+
       scale_fill_gradient(low = "#ffe5e5", high = "#ff3232", space = "Lab", guide = "colourbar") +
       coord_map()+
@@ -69,11 +69,11 @@ shinyApp(ui=ui, server=server)
   
 
 
- " tags$h1('ºòµ¥ÀÌÅÍ Åë°èºĞ¼® 1Á¶ ´ë½Ãº¸µå'),
+ " tags$h1('ë¹…ë°ì´í„° í†µê³„ë¶„ì„ 1ì¡° ëŒ€ì‹œë³´ë“œ'),
   tags$hr(),
   tags$br(),
-  tags$p(strong('À¯µ¿ÀÎ±¸¼ö¸¦ ÅëÇÑ ¿ÍÀÌÆÄÀÌ Ãß°¡ÀûÀÎ ¼³Ä¡ ÇÊ¿ä Áö¿ª Å½»ö')),
-  tags$p(em('1914243 ÀÌÀ±¾Æ | 1911815 ÀÓÀ¯³ª | 1816622 ÀüÁö¿ø'))
+  tags$p(strong('ìœ ë™ì¸êµ¬ìˆ˜ë¥¼ í†µí•œ ì™€ì´íŒŒì´ ì¶”ê°€ì ì¸ ì„¤ì¹˜ í•„ìš” ì§€ì—­ íƒìƒ‰')),
+  tags$p(em('1914243 ì´ìœ¤ì•„ | 1911815 ì„ìœ ë‚˜ | 1816622 ì „ì§€ì›'))
 )"
 
 
