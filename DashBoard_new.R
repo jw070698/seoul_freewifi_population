@@ -1,4 +1,4 @@
-# 3. ½Ã°¢È­ ¹× ´ë½Ãº¸µå(Rshiny) - ÀÎ»çÀÌÆ® µµÃâ
+# 3. ì‹œê°í™” ë° ëŒ€ì‹œë³´ë“œ(Rshiny) - ì¸ì‚¬ì´íŠ¸ ë„ì¶œ
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
@@ -6,17 +6,19 @@ library(plotly)
 library(wordcloud)
 library(wordcloud2)
 library(RColorBrewer)
+library(stringr)
 
 #source("SeoulWifi_EDA.r")
 load("Wifi_map_merge.rda")
 load("gu_count.rda")
+load("wifi_pop.rda")
 gu_name<-read.csv("gu_name.csv")
 
 create_wordcloud <- function() {
-  radius=gu_count$ÃÑ»ıÈ°ÀÎ±¸¼ö #±Û¾¾ Å©±â
+  radius=gu_count$ì´ìƒí™œì¸êµ¬ìˆ˜ #ê¸€ì”¨ í¬ê¸°
   pal<-brewer.pal(8,"Dark2")
   set.seed(123)
-  #par(family="AppleGothic") #!!ÆùÆ® ÀúÀåÇÏ´Â °úÁ¤ ÀÖ¾î¾ßÇÒµí
+  #par(family="AppleGothic") #!!í°íŠ¸ ì €ì¥í•˜ëŠ” ê³¼ì • ìˆì–´ì•¼í• ë“¯
   wordcloud<-wordcloud(words=gu_count$name,freq=radius,random.order=F,rot.per=.1,colors=pal)
   return(wordcloud)
   }
@@ -25,15 +27,15 @@ create_treemap <- function() {
   library(treemap)
   treemap<-treemap(gu_count,
           index="name",
-          vSize="ÃÑ»ıÈ°ÀÎ±¸¼ö", # Å¸ÀÏÀÇ Å©±â
-          vColor="ÃÑ»ıÈ°ÀÎ±¸¼ö", # Å¸ÀÏÀÇ ÄÃ·¯
-          type="value", # Å¸ÀÏ ÄÃ·¯¸µ ¹æ¹ı
-          bg.labels="yellow",fontfamily.labels="AppleGothic") # ·¹ÀÌºíÀÇ ¹è°æ»ö
+          vSize="ì´ìƒí™œì¸êµ¬ìˆ˜", # íƒ€ì¼ì˜ í¬ê¸°
+          vColor="ì´ìƒí™œì¸êµ¬ìˆ˜", # íƒ€ì¼ì˜ ì»¬ëŸ¬
+          type="value", # íƒ€ì¼ ì»¬ëŸ¬ë§ ë°©ë²•
+          bg.labels="yellow",fontfamily.labels="AppleGothic") # ë ˆì´ë¸”ì˜ ë°°ê²½ìƒ‰
   return(treemap)
 }
 
 ui <- dashboardPage(
-  dashboardHeader(title="À¯µ¿ÀÎ±¸¼ö¸¦ ÅëÇÑ ¿ÍÀÌÆÄÀÌ Ãß°¡ÀûÀÎ ¼³Ä¡ ÇÊ¿ä Áö¿ª Å½»ö", titleWidth=600),
+  dashboardHeader(title="ìœ ë™ì¸êµ¬ìˆ˜ë¥¼ í†µí•œ ì™€ì´íŒŒì´ ì¶”ê°€ì ì¸ ì„¤ì¹˜ í•„ìš” ì§€ì—­ íƒìƒ‰", titleWidth=600),
   dashboardSidebar(
     sidebarMenu(
       menuItem("EDA", tabName = "EDA"),
@@ -46,42 +48,47 @@ ui <- dashboardPage(
         fluidRow(
           box(
             selectInput(inputId = "year",
-                         "¿¬µµ¸¦ °í¸£¼¼¿ä",
+                         "ì—°ë„ë¥¼ ê³ ë¥´ì„¸ìš”",
                          width=250,
                          list(2019,2020,2021)
             ), width=1
           ),
-          box(title="¼­¿ï½Ã ±¸º° °ø°ø¿ÍÀÌÆÄÀÌ",status="primary",solidHeader=TRUE,collapsible=TRUE,
+          box(title="ì„œìš¸ì‹œ êµ¬ë³„ ê³µê³µì™€ì´íŒŒì´",status="primary",solidHeader=TRUE,collapsible=TRUE,
               plotOutput(outputId = "map", width=600),
               width=5)
-          #box(title="¿¬µµº° °ø°ø¿ÍÀÌÆÄÀÌ", status="primary", solidHeader=TRUE, collapsible=TRUE,
+          #box(title="ì—°ë„ë³„ ê³µê³µì™€ì´íŒŒì´", status="primary", solidHeader=TRUE, collapsible=TRUE,
           #    plotOutput(outputId = "TimeSeries", width=700) )
         ),
         fluidRow(
-          box(
-            radioButtons(inputId = "graph",
-                         "±×·¡ÇÁ¸¦ °í¸£¼¼¿ä",width=250,
-                         choices=c("WordCloud","TreeMap")), width=1)
-          ),
-          box(title="¼­¿ï½Ã ±¸º° À¯µ¿ÀÎ±¸", status="primary",solidHeader=TRUE,collapsible=TRUE,
-              plotOutput(outputId = "graph_out", width=600))
+          box(radioButtons(inputId = "graph",
+                         "ê·¸ë˜í”„ë¥¼ ê³ ë¥´ì„¸ìš”",width=250,
+                         choices=c("WordCloud","TreeMap")), width=1),
+          box(title="ì„œìš¸ì‹œ êµ¬ë³„ ìœ ë™ì¸êµ¬", status="primary",solidHeader=TRUE,collapsible=TRUE,
+              plotOutput(outputId = "graph_out", width=600)))
           
           # tabBox(
-          #   title="¼­¿ï½Ã ±¸º° À¯µ¿ÀÎ±¸", side="right", 
+          #   title="ì„œìš¸ì‹œ êµ¬ë³„ ìœ ë™ì¸êµ¬", side="right", 
           #   id="tab",
           #   tabPanel("WordCloud", plotOutput("wordcloud")),
           #   tabPanel("TreeMap", plotlyOutput("treemap"))
           # )
-        )
-      ),
+        ),
       tabItem(tabName = "INSIGHT",
               fluidRow(
-                
-              )
+                box(
+                  selectInput(inputId = "year_i",
+                              "ì—°ë„ë¥¼ ê³ ë¥´ì„¸ìš”",
+                              width=250,
+                              list(2019,2020,2021)
+                  ), width=1
+                ),
+                box(title="ìƒí™œì¸êµ¬ ìˆ˜ ëŒ€ë¹„ ê³µê³µì™€ì´íŒŒì´ ì„¤ì¹˜ ìˆ˜",solidHeader=TRUE, collapsible=TRUE,
+                    plotOutput(outputId = "ratio", width = 1000), width=8)
             )
     )
   )
-      
+)
+)
       
       
       
@@ -102,8 +109,8 @@ server <- function(input, output) {
   plot <- reactive({
     #options(repr.plot.width = 300, repr.plot.height = 100)
     
-    ggplot() + geom_polygon(data = merge[merge$¼³Ä¡³âµµ==input$year,], aes(x=long, y=lat, group=group, fill = cum_count)) +
-      labs(fill="¼³Ä¡ ´©Àû °³¼ö")+
+    ggplot() + geom_polygon(data = merge[merge$ì„¤ì¹˜ë…„ë„==input$year,], aes(x=long, y=lat, group=group, fill = cum_count)) +
+      labs(fill="ì„¤ì¹˜ ëˆ„ì  ê°œìˆ˜")+
       geom_text(data=gu_name, aes(x=long, y=lat, label=gu))+
       scale_fill_gradient(low = "#ffe5e5", high = "#ff3232", space = "Lab", guide = "colourbar") +
       coord_map()+
@@ -124,11 +131,20 @@ server <- function(input, output) {
       create_treemap()
     }
   })
+  output$ratio=renderPlot({
+    #barplot(ratio~ìì¹˜êµ¬,wifi_pop[wifi_pop$year==input$year,], main=input$year,xlab="ìì¹˜êµ¬", ylab="ëˆ„ì  ì„¤ì¹˜ ìˆ˜/ìƒí™œì¸êµ¬ ìˆ˜", col=rainbow(5))
+    y=input$year_i
+    ggplot(wifi_pop[wifi_pop$year==y,], aes(x=reorder(ìì¹˜êµ¬,-ratio), y=ratio, fill=ìì¹˜êµ¬))+geom_bar(stat="identity", width=0.8)+
+      ggtitle(paste(input$year_i,"ë…„"))+xlab("ìì¹˜êµ¬")+ylab("ëˆ„ì  ì„¤ì¹˜ ìˆ˜/ìƒí™œì¸êµ¬ ìˆ˜")+
+      theme(plot.title=element_text(hjust=0.5))+
+      theme(axis.text.y = element_blank())+
+      theme_bw()
+    })
   
   
   "output$TimeSeries=renderPlot({
-    ggplot(merge, aes(x=¼³Ä¡³âµµ, y=cum_count, group=ÀÚÄ¡±¸))+
-      geom_line(aes(color=ÀÚÄ¡±¸), size=1)
+    ggplot(merge, aes(x=ì„¤ì¹˜ë…„ë„, y=cum_count, group=ìì¹˜êµ¬))+
+      geom_line(aes(color=ìì¹˜êµ¬), size=1)
   })"
 }
 
@@ -140,11 +156,13 @@ shinyApp(ui=ui, server=server)
 
 
 
- " tags$h1('ºòµ¥ÀÌÅÍ Åë°èºĞ¼® 1Á¶ ´ë½Ãº¸µå'),
+ " tags$h1('ë¹…ë°ì´í„° í†µê³„ë¶„ì„ 1ì¡° ëŒ€ì‹œë³´ë“œ'),
   tags$hr(),
   tags$br(),
-  tags$p(strong('À¯µ¿ÀÎ±¸¼ö¸¦ ÅëÇÑ ¿ÍÀÌÆÄÀÌ Ãß°¡ÀûÀÎ ¼³Ä¡ ÇÊ¿ä Áö¿ª Å½»ö')),
-  tags$p(em('1914243 ÀÌÀ±¾Æ | 1911815 ÀÓÀ¯³ª | 1816622 ÀüÁö¿ø'))
+  tags$p(strong('ìœ ë™ì¸êµ¬ìˆ˜ë¥¼ í†µí•œ ì™€ì´íŒŒì´ ì¶”ê°€ì ì¸ ì„¤ì¹˜ í•„ìš” ì§€ì—­ íƒìƒ‰')),
+  tags$p(em('1914243 ì´ìœ¤ì•„ | 1911815 ì„ìœ ë‚˜ | 1816622 ì „ì§€ì›'))
 )"
+
+
 
 
