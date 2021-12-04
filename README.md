@@ -9,7 +9,7 @@
   - 사용 항목 : 자치구, 설치년도, x좌표, y좌표
 - 행정동별 서울생활인구(내국인) : http://data.seoul.go.kr/dataList/OA-14991/S/1/datasetView.do
   - 사용 항목 : 기준일id, 행정동코드, 총생활인구수
-- 자치구단위 서울생활인구(내국인) : https://data.seoul.go.kr/dataList/OA-15439/S/1/datasetView.do
+- (참고자료) 자치구단위 서울생활인구(내국인) : https://data.seoul.go.kr/dataList/OA-15439/S/1/datasetView.do
   - 사용 항목 : 2019, 2020, 2021년의 자치구별 집계 정보
 ## 3. 프로젝트 설명
 - step1 : 공공데이터 포털 api 스크래핑
@@ -45,6 +45,7 @@
     <img src="https://user-images.githubusercontent.com/75953480/144723097-21b1712b-06a2-4e2c-b646-65aee1bee947.jpeg" width="600" height="250"/></br>
     6. 서울시의 자치구별 공공와이파이 개수와 서울생활인구의 비율을 나타낸 막대그래프</br>
     <img src="https://user-images.githubusercontent.com/75953480/144721693-b7e99609-4573-40be-b484-f6ee17d366c8.jpeg" width="550" height="250"/></br>
+    7. 2021년 11월 서울시의 자치구별 총생활인구수 현황</br>
 ## 4. 아쉬운 점 및 Future job
 - 공공데이터에 최신 데이터가 추가된다면 더 정확한 분석이 가능할 것으로 기대한다.
 - 서울생활인구 데이터 사용에 너무 많은 시간이 걸려 기간을 축소하여 사용하였는데, 기간을 확장하여 분석하면 더 좋은 결과를 낼 수 있을 것이다.
