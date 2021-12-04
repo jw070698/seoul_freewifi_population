@@ -28,7 +28,7 @@
     4. 워드클라우드 : 서울시의 자치구별 총생활인구수</br>
     <img src="https://user-images.githubusercontent.com/75953480/144702545-54d28f90-1f60-400c-ae91-8c87f7d17462.png" width="250" height="250"/></br>
     5. 트리맵 : 서울시의 자치구별 총생활인구수</br>
-    <img src="https://user-images.githubusercontent.com/75953480/144702532-1638f9d3-736c-4105-b686-c2ca25b74af1.jpeg" width="600" height="250"></br>
+    <img src="https://user-images.githubusercontent.com/75953480/144702532-1638f9d3-736c-4105-b686-c2ca25b74af1.jpeg" width="550" height="250"></br>
     6. 막대그래프 : 서울시의 자치구별 공공와이파이 개수와 서울생활인구의 비율
 ## 4. 아쉬운 점 및 Future job
 - 공공데이터에 최신 데이터가 추가된다면 더 정확한 분석이 가능할 것으로 기대한다.
