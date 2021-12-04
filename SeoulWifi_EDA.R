@@ -1,4 +1,3 @@
-############2014부터 누적하는거 해야됨!!!!
 # 2. EDA 탐색과정 ####
 # 무료 와이파이 현황(개방표준)####
 
@@ -41,15 +40,15 @@ gu_2019 <- SeoulWifi.df %>%
   summarise(n=n())
 View(gu_2019)
 ## 2019년 누적 히스토그램
-ggplot(data= gu_2019, aes(x = reorder(자치구,-n), y=n)) +geom_col()
+ggplot(data= gu_2019, aes(x = reorder(자치구,-n), y=n)) +geom_col() + labs(title="2019년 wifi 누적")
 
-## 2019년만 히스토그램
+# 2019년만 히스토그램
 gu_19only <- SeoulWifi.df %>% 
   filter(설치년도==2019) %>% 
   group_by(자치구) %>% 
   summarise(n=n())
 View(gu_19only)
-ggplot(data=gu_19only, aes(x = reorder(자치구,-n),y=n)) +geom_col()
+ggplot(data=gu_19only, aes(x = reorder(자치구,-n),y=n)) +geom_col() + labs(title="2019년 wifi")
 
 # 2020년 누적
 gu_2020 <- SeoulWifi.df %>% 
@@ -58,15 +57,16 @@ gu_2020 <- SeoulWifi.df %>%
   summarise(n=n())
 View(gu_2020)
 ## 2020년 누적 히스토그램
-ggplot(data= gu_2020, aes(x = reorder(자치구,-n), y=n)) +geom_col()
+ggplot(data= gu_2020, aes(x = reorder(자치구,-n), y=n)) +geom_col() + labs(title="2020년 wifi 누적")
 
-## 2020년만 히스토그램
+# 2020년만 히스토그램
 gu_20only <- SeoulWifi.df %>% 
   filter(설치년도==2020) %>% 
   group_by(자치구) %>% 
   summarise(n=n())
 View(gu_20only)
-ggplot(data=gu_20only, aes(x = reorder(자치구,-n),y=n)) +geom_col()
+
+ggplot(data=gu_20only, aes(x = reorder(자치구,-n),y=n)) +geom_col() + labs(title="2020년 wifi")
 
 # 2021년 누적
 gu_2021 <- SeoulWifi.df %>% 
@@ -75,15 +75,15 @@ gu_2021 <- SeoulWifi.df %>%
   summarise(n=n())
 View(gu_2021)
 ## 2021년 누적 히스토그램
-ggplot(data= gu_2021, aes(x = reorder(자치구,-n), y=n)) +geom_col()
+ggplot(data= gu_2021, aes(x = reorder(자치구,-n), y=n)) +geom_col() + labs(title="2021년 wifi 누적")
 
-## 2021년만 히스토그램
+# 2021년만 히스토그램
 gu_21only <- SeoulWifi.df %>% 
   filter(설치년도==2021) %>% 
   group_by(자치구) %>% 
   summarise(n=n())
 View(gu_21only)
-ggplot(data=gu_21only, aes(x = reorder(자치구,-n),y=n)) +geom_col()
+ggplot(data=gu_21only, aes(x = reorder(자치구,-n),y=n)) +geom_col() + labs(title="2021년 wifi")
 
 ## 지도 시각화
 library(ggmap)
