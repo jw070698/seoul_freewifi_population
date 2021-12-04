@@ -1,4 +1,6 @@
-############2014ºÎÅÍ ´©ÀûÇÏ´Â°Å ÇØ¾ßµÊ!!!!
+############2014ë¶€í„° ëˆ„ì í•˜ëŠ”ê±° í•´ì•¼ë¨!!!!
+# 2. EDA íƒìƒ‰ê³¼ì • ####
+# ë¬´ë£Œ ì™€ì´íŒŒì´ í˜„í™©(ê°œë°©í‘œì¤€)####
 
 library(dplyr)
 
@@ -7,16 +9,16 @@ str(SeoulWifi.df)
 SeoulWifi.df$id<-as.numeric(SeoulWifi.df$id)
 View(SeoulWifi.df)
 'gu_count<-SeoulWifi.df %>%
-  group_by(id, À§µµ, °æµµ) %>%
+  group_by(id, ìœ„ë„, ê²½ë„) %>%
   summarise(count=n())'
 
 gu_count<-SeoulWifi.df%>%
   group_by(id)%>%
   summarise(n=n())
 
-#SeoulWifi.df<-SeoulWifi.df %>% filter(¼³Ä¡³âµµ>=2018)
+#SeoulWifi.df<-SeoulWifi.df %>% filter(ì„¤ì¹˜ë…„ë„>=2018)
 
-## Áöµµ ½Ã°¢È­
+## ì§€ë„ ì‹œê°í™”
 library(ggmap)
 library(ggplot2)
 library(raster)
@@ -24,14 +26,14 @@ library(rgeos)
 library(maptools)
 library(rgdal)
 
-map <- shapefile("TL_SCCO_SIG.shp") ## ÆÄÀÏ ÀúÀåµÇ¾îÀÖ¾î¾ßÇÔ.
-## map ÁÂÇ¥°è º¯È¯
+map <- shapefile("TL_SCCO_SIG.shp") ## íŒŒì¼ ì €ì¥ë˜ì–´ìˆì–´ì•¼í•¨.
+## map ì¢Œí‘œê³„ ë³€í™˜
 map <- spTransform(map, CRSobj = CRS('+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'))
-## mapÀ» µ¥ÀÌÅÍÇÁ·¹ÀÓÀ¸·Î º¯È¯
+## mapì„ ë°ì´í„°í”„ë ˆì„ìœ¼ë¡œ ë³€í™˜
 new_map <- fortify(map, region = 'SIG_CD')
 View(new_map)
 new_map$id <- as.numeric(new_map$id)
-## ¼­¿ï µ¥ÀÌÅÍ ÃßÃâ
+## ì„œìš¸ ë°ì´í„° ì¶”ì¶œ
 seoul_map <- new_map[new_map$id <= 11740,]
 View(seoul_map)
 
