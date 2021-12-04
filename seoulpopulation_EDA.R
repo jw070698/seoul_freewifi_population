@@ -42,6 +42,7 @@ pop_rank5 <- pop_group %>%
   head(5) %>% 
   select(sum_population, name)
 View(pop_rank5)
+write.csv(pop_rank5, file="pop_rank5.csv")
 
 circle <- table(pop_rank5$name)
 circle
