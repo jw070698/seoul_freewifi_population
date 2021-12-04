@@ -10,6 +10,8 @@ glimpse(population_df)
 table(is.na(population_df))
 head(population_df)
 View(population_df)
+dim(population_df)
+summary(population_df) #총생활인구수 확인 위해
 
 # 자치구별로 그룹화 (11월)
 pop_group<- 
@@ -33,13 +35,26 @@ pop_group <- pop_group %>% mutate(name= case_when(
 ))
 
 View(pop_group)
-  
-# 막대그래프
+
+## 총생활인구수 상위 5개 원그래프
+pop_rank5 <- pop_group %>% 
+  arrange(desc(sum_population)) %>% 
+  head(5) %>% 
+  select(sum_population, name)
+View(pop_rank5)
+
+circle <- table(pop_rank5$name)
+circle
+label <- paste(pop_rank5$name, "\n", pop_rank5$sum_population)
+label
+pie(circle, labels=label)
+
+## 막대그래프
 ggplot(data=pop_group, aes(x=name, y=sum_population)) + geom_col()
 # 막대그래프 인구 큰 순서대로 정렬 
 ggplot(data=pop_group, aes(x=reorder(name,-sum_population), y=sum_population)) + geom_col()
 
-# 워드클라우드
+## 워드클라우드
 library(wordcloud)
 library(RColorBrewer)
 rm(list=ls())
@@ -63,7 +78,7 @@ set.seed(123)
 par(family="AppleGothic")
 wordcloud(words=gu_count$name,freq=radius,random.order=F,rot.per=.1,colors=pal)
 
-#treemap
+## treemap
 library(treemap)
 treemap(gu_count,
         index="name",
