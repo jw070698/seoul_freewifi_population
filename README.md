@@ -26,9 +26,9 @@
     1. 서울시의 자치구별 공공와이파이 설치 현황을 나타낸 지도</br>
     <img src="https://user-images.githubusercontent.com/75953480/144628706-f7e3bea1-2baa-41c1-bfd0-edb213c158c8.png" width="400" height="250"/></br>
     2. 서울시의 자치구별 연도에 따른 공공와이파이 개수 현황을 나타낸 막대그래프(2019년, 2020년, 2021년)</br>
-    <img src="https://user-images.githubusercontent.com/75953480/144721926-4444a5d5-71a8-4f58-b1c1-c86f192c130e.jpeg" width="550" height="200"/></br>
-    <img src="https://user-images.githubusercontent.com/75953480/144721942-6123379c-3ae3-44f9-8075-e1063e86b4d6.jpeg" width="550" height="200"/></br>
-    <img src="https://user-images.githubusercontent.com/75953480/144721945-52e14cec-4ffd-428a-980a-a4742f5bf1d9.jpeg" width="550" height="200"/></br>
+    <img src="https://user-images.githubusercontent.com/75953480/144721926-4444a5d5-71a8-4f58-b1c1-c86f192c130e.jpeg" width="600" height="150"/></br>
+    <img src="https://user-images.githubusercontent.com/75953480/144721942-6123379c-3ae3-44f9-8075-e1063e86b4d6.jpeg" width="600" height="150"/></br>
+    <img src="https://user-images.githubusercontent.com/75953480/144721945-52e14cec-4ffd-428a-980a-a4742f5bf1d9.jpeg" width="600" height="150"/></br>
     3. 서울시 공공와이파이 서비스 위치 정보와 행정동별 서울생활인구의 연관성을 나타낸 히트맵
     4. 서울시의 자치구별 총생활인구수를 나타낸 워드클라우드</br>
     <img src="https://user-images.githubusercontent.com/75953480/144702545-54d28f90-1f60-400c-ae91-8c87f7d17462.png" width="250" height="250"/></br>
