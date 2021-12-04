@@ -2,6 +2,9 @@ library(XML)
 library(RCurl)
 library(dplyr)
 
+# 1. ë°ì´í„° ìˆ˜ì§‘ - API ìŠ¤í¬ë˜í•‘ ####
+# ë¬´ë£Œ ì™€ì´íŒŒì´ í˜„í™©(ê°œë°©í‘œì¤€)####
+
 url<-"http://openapi.seoul.go.kr:8088"
 myKey<-"5064677356796f6f37334b6341556a"
 StartIndex=1
@@ -10,12 +13,12 @@ EndIndex=1
 myURL<-paste(url,"/",myKey,"/xml/TbPublicWifiInfo/",StartIndex,"/",EndIndex,sep="")
 myURL
 
-#13628°³ÀÇ µ¥ÀÌÅÍ ºÒ·¯¿À±â À§ÇØ ¼ö¿­ ÁöÁ¤
+#13628ê°œì˜ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ìœ„í•´ ìˆ˜ì—´ ì§€ì •
 start<-seq(from=1, to=13628, by=1000)
 
 df_wifi<-data.frame()
 for (StartIndex in start) {
-  EndIndex=StartIndex+999 #ÇÑ¹ø ¿äÃ»ÇÒ ¶§ 1000À» ³ÑÁö ¸øÇÔ
+  EndIndex=StartIndex+999 #í•œë²ˆ ìš”ì²­í•  ë•Œ 1000ì„ ë„˜ì§€ ëª»í•¨
   myURL<-paste(url,"/",myKey,"/xml/TbPublicWifiInfo/",StartIndex,"/",EndIndex,sep="")
   myxml<-getURL(myURL)
   myxml<-xmlParse(myxml)
@@ -26,31 +29,31 @@ for (StartIndex in start) {
 
 str(df_wifi)
 
-## ÇÊ¿äÇÑ º¯¼ö ¼±ÅÃ
+## í•„ìš”í•œ ë³€ìˆ˜ ì„ íƒ
 FreeWifi<-select(df_wifi,X_SWIFI_WRDOFC, X_SWIFI_CNSTC_YEAR, LAT, LNT)
-## ¿­ÀÌ¸§ º¯È¯
-FreeWifi<-rename(FreeWifi, ÀÚÄ¡±¸=X_SWIFI_WRDOFC, ¼³Ä¡³âµµ=X_SWIFI_CNSTC_YEAR, À§µµ=LAT, °æµµ=LNT)
+## ì—´ì´ë¦„ ë³€í™˜
+FreeWifi<-rename(FreeWifi, ìì¹˜êµ¬=X_SWIFI_WRDOFC, ì„¤ì¹˜ë…„ë„=X_SWIFI_CNSTC_YEAR, ìœ„ë„=LAT, ê²½ë„=LNT)
 View(FreeWifi)
 str(FreeWifi)
 
-## ¹ıÁ¤µ¿ÄÚµå º¯¼ö id Ãß°¡
+## ë²•ì •ë™ì½”ë“œ ë³€ìˆ˜ id ì¶”ê°€
 FreeWifi$id<-0
 for (i in 1:13628) {
-    FreeWifi[i,]$id<-switch(FreeWifi[i,]$ÀÚÄ¡±¸, "°­³²±¸"=11680, "°­µ¿±¸"=11740, "°­ºÏ±¸"=11305, "°­¼­±¸"=11500, "°ü¾Ç±¸"=11620, "±¤Áø±¸"=11215, "±¸·Î±¸"=11530, "±İÃµ±¸"=11545, "³ë¿ø±¸"=11350, "µµºÀ±¸"=11320, "µ¿´ë¹®±¸"=11230, "µ¿ÀÛ±¸"=11590, "¸¶Æ÷±¸"=11440, "¼­´ë¹®±¸"=11410, "¼­ÃÊ±¸"=11650, "¼ºµ¿±¸"=11200, "¼ººÏ±¸"=11290, "¼ÛÆÄ±¸"=11710, "¾çÃµ±¸"=11470, "¿µµîÆ÷±¸"=11560, "¿ë»ê±¸"=11170, "ÀºÆò±¸"=11380, "Á¾·Î±¸"=11110, "Áß±¸"=11140, "Áß¶û±¸"=11260)
+    FreeWifi[i,]$id<-switch(FreeWifi[i,]$ìì¹˜êµ¬, "ê°•ë‚¨êµ¬"=11680, "ê°•ë™êµ¬"=11740, "ê°•ë¶êµ¬"=11305, "ê°•ì„œêµ¬"=11500, "ê´€ì•…êµ¬"=11620, "ê´‘ì§„êµ¬"=11215, "êµ¬ë¡œêµ¬"=11530, "ê¸ˆì²œêµ¬"=11545, "ë…¸ì›êµ¬"=11350, "ë„ë´‰êµ¬"=11320, "ë™ëŒ€ë¬¸êµ¬"=11230, "ë™ì‘êµ¬"=11590, "ë§ˆí¬êµ¬"=11440, "ì„œëŒ€ë¬¸êµ¬"=11410, "ì„œì´ˆêµ¬"=11650, "ì„±ë™êµ¬"=11200, "ì„±ë¶êµ¬"=11290, "ì†¡íŒŒêµ¬"=11710, "ì–‘ì²œêµ¬"=11470, "ì˜ë“±í¬êµ¬"=11560, "ìš©ì‚°êµ¬"=11170, "ì€í‰êµ¬"=11380, "ì¢…ë¡œêµ¬"=11110, "ì¤‘êµ¬"=11140, "ì¤‘ë‘êµ¬"=11260)
 }
-## id ¼ıÀÚÇüÀ¸·Î º¯È¯
+## id ìˆ«ìí˜•ìœ¼ë¡œ ë³€í™˜
 FreeWifi$id<-as.numeric(FreeWifi$id)
 View(FreeWifi)
 
-##°áÃøÄ¡ Çà Ã£±â->µ¥ÀÌÅÍ¿¡ °æ±âµµ¿¡ ÇØ´çµÇ´Â °úÃµ½Ã°¡ Æ÷ÇÔµÇ¾îÀÖ´Â °ÍÀ¸·Î È®ÀÎ
+##ê²°ì¸¡ì¹˜ í–‰ ì°¾ê¸°->ë°ì´í„°ì— ê²½ê¸°ë„ì— í•´ë‹¹ë˜ëŠ” ê³¼ì²œì‹œê°€ í¬í•¨ë˜ì–´ìˆëŠ” ê²ƒìœ¼ë¡œ í™•ì¸
 dim(FreeWifi)
 sum(is.na(FreeWifi))
 FreeWifi[!complete.cases(FreeWifi), ]
 SeoulWifi<-na.omit(FreeWifi)
-sum(is.na(SeoulWifi)) #°áÃøÄ¡ Á¦°ÅµÈ °Í È®ÀÎ
+sum(is.na(SeoulWifi)) #ê²°ì¸¡ì¹˜ ì œê±°ëœ ê²ƒ í™•ì¸
 dim(is.na(SeoulWifi))
 
-## csvÆÄÀÏ·Î ÀúÀå
+## csvíŒŒì¼ë¡œ ì €ì¥
 write.csv(SeoulWifi, file="SeoulWifi.csv")
 
 
