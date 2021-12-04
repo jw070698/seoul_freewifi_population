@@ -24,7 +24,7 @@
     - SeoulWifi_EDA.R :   
 
 - step3 : 대시보드 생성
-  - DashBoard.R 
+  - DashBoard_new.R 
     1. 서울시의 자치구별 공공와이파이 설치 현황을 나타낸 지도</br>
     <img src="https://user-images.githubusercontent.com/75953480/144628706-f7e3bea1-2baa-41c1-bfd0-edb213c158c8.png" width="400" height="250"/></br>
     2. 서울시의 자치구별 연도에 따른 공공와이파이 개수 현황을 나타낸 막대그래프(2019년, 2020년, 2021년)</br>
