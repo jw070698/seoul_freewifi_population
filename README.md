@@ -25,14 +25,15 @@
   - DashBoard.R 
     1. 서울시의 자치구별 공공와이파이 설치 현황을 나타낸 지도</br>
     <img src="https://user-images.githubusercontent.com/75953480/144628706-f7e3bea1-2baa-41c1-bfd0-edb213c158c8.png" width="400" height="250"/></br>
-    2. 서울시의 자치구별 연도에 따른 공공와이파이 개수 현황을 나타낸 막대그래프
+    2. 서울시의 자치구별 연도에 따른 공공와이파이 개수 현황을 나타낸 막대그래프</br>
+    <img src="" width="" height=""/></br>
     3. 서울시 공공와이파이 서비스 위치 정보와 행정동별 서울생활인구의 연관성을 나타낸 히트맵
     4. 서울시의 자치구별 총생활인구수를 나타낸 워드클라우드</br>
     <img src="https://user-images.githubusercontent.com/75953480/144702545-54d28f90-1f60-400c-ae91-8c87f7d17462.png" width="250" height="250"/></br>
     5. 서울시의 자치구별 총생활인구수를 나타낸 트리맵</br>
-    <img src="https://user-images.githubusercontent.com/75953480/144702532-1638f9d3-736c-4105-b686-c2ca25b74af1.jpeg" width="550" height="250"></br>
+    <img src="https://user-images.githubusercontent.com/75953480/144702532-1638f9d3-736c-4105-b686-c2ca25b74af1.jpeg" width="550" height="250"/></br>
     6. 서울시의 자치구별 공공와이파이 개수와 서울생활인구의 비율을 나타낸 막대그래프</br>
-    <img src="https://user-images.githubusercontent.com/75953480/144721693-b7e99609-4573-40be-b484-f6ee17d366c8.jpeg" width="550" height="250"></br>
+    <img src="https://user-images.githubusercontent.com/75953480/144721693-b7e99609-4573-40be-b484-f6ee17d366c8.jpeg" width="550" height="250"/></br>
 ## 4. 아쉬운 점 및 Future job
 - 공공데이터에 최신 데이터가 추가된다면 더 정확한 분석이 가능할 것으로 기대한다.
 - 서울생활인구 데이터 사용에 너무 많은 시간이 걸려 기간을 축소하여 사용하였는데, 전체 기간의 데이터를 사용하면 더 좋은 결과를 낼 수 있을 것이다.
