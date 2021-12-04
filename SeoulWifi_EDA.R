@@ -13,6 +13,15 @@ View(SeoulWifi.df)
   group_by(id, 위도, 경도) %>%
   summarise(count=n())'
 
+## 년도 고려하여 자치구 상관없이 공공와이파이 설치현황
+gu_year <- SeoulWifi.df %>% 
+  group_by(설치년도) %>% 
+  summarise(sum_population = sum(n()))
+View(gu_year)
+ggplot(data = gu_year, aes(x = 설치년도, y = sum_population, ymax = sum_population + 500)) + geom_line() + geom_point(size=3.5, colour = "darkgreen") 
++ geom_text(mapping=aes(label = sum_population, fontface='bold'),vjust=-1.2) + labs(title = '년도에 따른 공공와이파이 설치 현황') + theme_minimal() 
++ theme(plot.title=element_text(face="bold",hjust=0.5,size=15,color = "darkgreen")) + scale_color_brewer(palette= "BrBG")
+
 ## 년도 상관없이(전체누적) 자치구별 공공와이파이 설치현황
 gu_count<-SeoulWifi.df%>%
   group_by(id)%>%
