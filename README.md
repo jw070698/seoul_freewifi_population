@@ -10,7 +10,7 @@
 - 행정동별 서울생활인구(내국인) : http://data.seoul.go.kr/dataList/OA-14991/S/1/datasetView.do
   - 사용 항목 : 기준일id, 행정동코드, 총생활인구수
 - 자치구단위 서울생활인구(내국인) : https://data.seoul.go.kr/dataList/OA-15439/S/1/datasetView.do
-  - 사용 항목 : 2019, 2020, 2021년의 집계구별 통계 정보
+  - 사용 항목 : 2019, 2020, 2021년의 집계구별 집계 정보
 ## 3. 프로젝트 설명
 - step1 : 공공데이터 포털 api 스크래핑
   - 서울시 공공와이파이 서비스 위치 정보
