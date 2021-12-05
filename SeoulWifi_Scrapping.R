@@ -55,7 +55,3 @@ dim(is.na(SeoulWifi))
 
 ## csv파일로 저장
 write.csv(SeoulWifi, file="SeoulWifi.csv")
-
-
-
-
