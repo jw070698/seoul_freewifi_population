@@ -27,12 +27,12 @@
   - 서울시 공공와이파이 서비스 위치 정보
     - SeoulWifi_EDA.R : 서울시 공공와이파이 서비스 위치 정보 EDA 탐색 과정
   - 행정동별 서울생활인구(내국인)
-    - seoulpopulation_EDA.R : 행정동별 서울생활인구(내국인) EDA 탐색 과정
+    - Seoulpopulation_EDA.R : 행정동별 서울생활인구(내국인) EDA 탐색 과정
 
 - step3 : 대시보드 생성
   - Wifi_map_merge.rda, gu_count.rda, gu_name.csv : 대시보드 파일 로드 과정에 필요
   - TL_SCCO_SIG.shp, TL_SCCO_SIG.prj, TL_SCCO_SIG.dbf, TL_SCCO_SIG.shx: 대시보드 패키지 실행에 필요
-  - DashBoard_new.R 
+  - Dashboard.R 
     1. 서울시의 자치구별 공공와이파이 설치 현황을 나타낸 지도</br>
     <img src="https://user-images.githubusercontent.com/75953480/144628706-f7e3bea1-2baa-41c1-bfd0-edb213c158c8.png" width="400" height="250"/></br>
     2. 서울시의 자치구별 연도에 따른 공공와이파이 개수 현황을 나타낸 막대그래프(2019년, 2020년, 2021년)</br>
