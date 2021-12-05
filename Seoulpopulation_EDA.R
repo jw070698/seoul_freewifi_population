@@ -36,7 +36,7 @@ pop_group <- pop_group %>% mutate(name= case_when(
 
 View(pop_group)
 
-## 총생활인구수 상위 5개 원그래프
+## 총생활인구수 상위 5개 원그래프(Piechart)
 pop_rank5 <- pop_group %>% 
   arrange(desc(sum_population)) %>% 
   head(5) %>% 
@@ -52,10 +52,10 @@ pie(circle, labels=label)
 
 ## 막대그래프
 ggplot(data=pop_group, aes(x=name, y=sum_population)) + geom_col()
-# 막대그래프 인구 큰 순서대로 정렬 
+# 막대그래프 총생활인구 큰 순서대로 정렬 
 ggplot(data=pop_group, aes(x=reorder(name,-sum_population), y=sum_population)) + geom_col()
 
-## 워드클라우드
+## 워드클라우드(Wordcloud)
 library(wordcloud)
 library(RColorBrewer)
 rm(list=ls())
@@ -73,7 +73,7 @@ gu_count <- gu_count %>% mutate(name= case_when(
   id == 11140 ~"중구", id == 11260 ~"중랑구", id == 11320 ~"도봉구"
 ))
 
-radius=gu_count$총생활인구수 #글씨 크기
+radius=gu_count$총생활인구수
 pal<-brewer.pal(8,"Dark2")
 set.seed(123)
 par(family="AppleGothic")
@@ -83,7 +83,7 @@ wordcloud(words=gu_count$name,freq=radius,random.order=F,rot.per=.1,colors=pal)
 library(treemap)
 treemap(gu_count,
         index="name",
-        vSize="총생활인구수", # 타일의 크기
-        vColor="총생활인구수", # 타일의 컬러
-        type="value", # 타일 컬러링 방법
-        bg.labels="yellow",fontfamily.labels="AppleGothic") # 레이블의 배경색
+        vSize="총생활인구수", 
+        vColor="총생활인구수", 
+        type="value", 
+        bg.labels="yellow",fontfamily.labels="AppleGothic") 
