@@ -56,7 +56,7 @@ ui <- dashboardPage(
                               box(title="서울시 자치구별 공공와이파이",status="primary",solidHeader=TRUE,collapsible=TRUE,
                                   plotOutput(outputId = "map", width=400),width=7)),
                        
-                       column(4, offset = -10,
+                       column(4, 
                               imageOutput("image"))),
               
               fluidRow(h3(" - 행정동별 서울생활인구(내국인)"),
@@ -66,7 +66,7 @@ ui <- dashboardPage(
                                                choices=c("WordCloud","TreeMap")), width=3),
                               box(title="서울시 자치구별 유동인구", status="primary",solidHeader=TRUE,collapsible=TRUE,
                                   plotOutput(outputId = "graph_out", width=400))),
-                       column(4,offset = -10,
+                       column(4,
                               box(title="서울시 내 자치구 총생활인구 top5 ", status="primary",solidHeader=TRUE,collapsible=TRUE,
                                   plotOutput(outputId = "pieChart", width = 400), width=11))
               )
@@ -85,8 +85,6 @@ ui <- dashboardPage(
                 column(width=9, offset=3,
                         box(title="총생활인구 (참고자료 기반)",status = "warning", solidHeader=TRUE,collapsible=TRUE,
                               imageOutput("pop"),width=100))), # 생활인구그래프
-               br(),
-               hr(),
 
                fluidRow(h3(" - 공공와이파이, 생활인구 데이터 통합 결과"),
                  box(
