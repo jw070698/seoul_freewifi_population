@@ -51,7 +51,7 @@
     <img src="https://user-images.githubusercontent.com/75953480/144721693-b7e99609-4573-40be-b484-f6ee17d366c8.jpeg" width="550" height="250"/></br>
     7. 2021년 11월 서울시의 자치구별 총생활인구수 현황</br>
     <img src="https://user-images.githubusercontent.com/75953480/144724546-88fb3ef8-6cb3-45cf-81df-8f3dc0b57964.jpeg" width="600" height="150"/></br>
-    8. 서울시의 연도에 따른 공공와이파이 설치 현황
+    8. 서울시의 연도에 따른 공공와이파이 설치 현황</br>
     <img src="https://user-images.githubusercontent.com/75953480/144741793-abe2a213-ebf2-4b72-a7c0-a96ea8cca53b.jpeg" width="600" height="250"/></br>
 ## 4. 결론
 - 서울시의 자치구별 공공와이파이 개수와 서울생활인구의 비율을 나타낸 그래프를 참고하면 <u>중구, 성동구, 강서구, 구로구, 은평구, 도봉구</u>가 상위 6개 자치구이다. 기사(https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=120seoulcall&logNo=221997117753)에 따르면 앞서 언급한 상위 6개 자치구와 설치 예정 지역이 일치하므로 이를 통해 서울생활인구가 공공와이파이 설치 지역 선정에 영향을 끼친다는 것을 알 수 있다. 
