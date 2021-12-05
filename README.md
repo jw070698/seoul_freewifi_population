@@ -51,6 +51,8 @@
     <img src="https://user-images.githubusercontent.com/75953480/144721693-b7e99609-4573-40be-b484-f6ee17d366c8.jpeg" width="550" height="250"/></br>
     7. 2021년 11월 서울시의 자치구별 총생활인구수 현황</br>
     <img src="https://user-images.githubusercontent.com/75953480/144724546-88fb3ef8-6cb3-45cf-81df-8f3dc0b57964.jpeg" width="600" height="150"/></br>
+    8. 서울시의 연도에 따른 공공와이파이 설치 현황
+    <img src="https://user-images.githubusercontent.com/75953480/144724546-88fb3ef8-6cb3-45cf-81df-8f3dc0b57964.jpeg" width="600" height="150"/></br>
 ## 4. 결론
 
 ## 5. 아쉬운 점 및 Future job
