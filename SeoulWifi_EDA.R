@@ -1,5 +1,5 @@
-# 2. EDA 탐색과정 ####
-# 무료 와이파이 현황(개방표준)####
+# 무료 와이파이 현황(개방표준)
+# 2. EDA 탐색과정 
 
 library(dplyr)
 
@@ -9,18 +9,15 @@ head(SeoulWifi.df)
 dim(SeoulWifi.df)
 SeoulWifi.df$id<-as.numeric(SeoulWifi.df$id)
 View(SeoulWifi.df)
-'gu_count<-SeoulWifi.df %>%
-  group_by(id, 위도, 경도) %>%
-  summarise(count=n())'
 
 ## 년도 고려하여 자치구 상관없이 공공와이파이 설치현황
 gu_year <- SeoulWifi.df %>% 
   group_by(설치년도) %>% 
-  summarise(sum_population = sum(n()))
+  summarise(누적설치수 = sum(n()))
 View(gu_year)
-ggplot(data = gu_year, aes(x = 설치년도, y = sum_population, ymax = sum_population + 500)) + geom_line() + geom_point(size=3.5, colour = "darkgreen") 
-+ geom_text(mapping=aes(label = sum_population, fontface='bold'),vjust=-1.2) + labs(title = '년도에 따른 공공와이파이 설치 현황') + theme_minimal() 
-+ theme(plot.title=element_text(face="bold",hjust=0.5,size=15,color = "darkgreen")) + scale_color_brewer(palette= "BrBG")
+ggplot(data = gu_year, aes(x = 설치년도, y = 누적설치수, ymax = 누적설치수 + 500)) + geom_line() + geom_point(size=3.5, colour = "darkgreen") +
+  geom_text(mapping=aes(label = 누적설치수, fontface='bold'),vjust=-1.2) + labs(title = '년도에 따른 공공와이파이 설치 현황') + theme_minimal() +
+  theme(plot.title=element_text(face="bold",hjust=0.5,size=15,color = "darkgreen")) + scale_color_brewer(palette= "BrBG")
 
 ## 년도 상관없이(전체누적) 자치구별 공공와이파이 설치현황
 gu_count<-SeoulWifi.df%>%
@@ -102,7 +99,7 @@ library(rgeos)
 library(maptools)
 library(rgdal)
 
-map <- shapefile("TL_SCCO_SIG.shp") ## 파일 저장되어있어야함.
+map <- shapefile("TL_SCCO_SIG.shp") ## TL_SCCO_SIG 파일들 모두 저장되어있어야함.
 ## map 좌표계 변환
 map <- spTransform(map, CRSobj = CRS('+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'))
 ## map을 데이터프레임으로 변환
@@ -112,22 +109,8 @@ new_map$id <- as.numeric(new_map$id)
 ## 서울 데이터 추출
 seoul_map <- new_map[new_map$id <= 11740,]
 View(seoul_map)
-
+## 데이터 합치기
 merge <- merge(seoul_map, gu_count, by='id')
 
-'count<-merge %>%
-  group_by(id, long, lat, group) %>%
-  summarise(count=n())'
+save(merge, file="Wifi_map_merge.rda")
 
-'count2<-merge%>%
-  group_by(id)%>%
-  mutate(n=n())'
-
-#View(merge)
-#ggplot() + geom_polygon(data = count, aes(x=long, y=lat, group=group), fill = 'white', color='grey')+
-#  geom_point(color="grey", alpha=.55, shape=1, aes(), size=3)
-#ggplot() + geom_polygon(data = count, aes(x=long, y=lat, group=group), fill = 'white', color='black')
-ggplot() + geom_polygon(data = merge, aes(x=long, y=lat, group=group, fill = n))
-
-ggplot(merge, aes(x=long, y=lat))+
-  geom_polygon()
