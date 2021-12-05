@@ -29,7 +29,7 @@ for (day in daylist){
 View(df_pop)
 str(df_pop)
 
-## 필요한열 선택 및 열이름 변환
+## 필요한 열 선택 및 열이름 변환
 population<-select(df_pop,STDR_DE_ID, ADSTRD_CODE_SE, TOT_LVPOP_CO)
 population<-rename(population, 기준일ID=STDR_DE_ID, 행정동코드=ADSTRD_CODE_SE, 총생활인구수=TOT_LVPOP_CO)
 View(population)
