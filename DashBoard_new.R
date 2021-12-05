@@ -1,4 +1,4 @@
-# 3. 시각화 및 대시보드(Rshiny) - 인사이트 도출
+# 3. 시각화 및 대시보드(Rshiny) - 인사이트 도출 ####
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
@@ -13,12 +13,13 @@ load("Wifi_map_merge.rda")
 load("gu_count.rda")
 load("wifi_pop.rda")
 gu_name<-read.csv("gu_name.csv")
+pop_rank5<-read.csv("pop_rank5.csv")
 
 create_wordcloud <- function() {
   radius=gu_count$총생활인구수 #글씨 크기
   pal<-brewer.pal(8,"Dark2")
   set.seed(123)
-  #par(family="AppleGothic") #!!폰트 저장하는 과정 있어야할듯
+  #par(family="AppleGothic") #!!폰트 저장하는 과정
   wordcloud<-wordcloud(words=gu_count$name,freq=radius,random.order=F,rot.per=.1,colors=pal)
   return(wordcloud)
   }
@@ -35,44 +36,39 @@ create_treemap <- function() {
 }
 
 ui <- dashboardPage(
-  dashboardHeader(title="유동인구수를 통한 와이파이 추가적인 설치 필요 지역 탐색", titleWidth=600),
+  dashboardHeader(title="생활인구수를 통한 와이파이 추가적인 설치 필요 지역 탐색", titleWidth=600),
   dashboardSidebar(
     sidebarMenu(
-      menuItem("EDA", tabName = "EDA"),
-      menuItem("INSIGHT", tabName="INSIGHT")
+      menuItem("EDA", tabName = "EDA",icon=icon("bar-chart-o")),
+      menuItem("INSIGHT", tabName="INSIGHT",icon=icon("list-alt"))
     )
   ),
   dashboardBody(
     tabItems(
+      # 1번째 tab content
       tabItem(tabName = "EDA",
-        fluidRow(
-          box(
-            selectInput(inputId = "year",
-                         "연도를 고르세요",
-                         width=250,
-                         list(2019,2020,2021)
-            ), width=1
-          ),
-          box(title="서울시 구별 공공와이파이",status="primary",solidHeader=TRUE,collapsible=TRUE,
-              plotOutput(outputId = "map", width=600),
-              width=5)
-          #box(title="연도별 공공와이파이", status="primary", solidHeader=TRUE, collapsible=TRUE,
-          #    plotOutput(outputId = "TimeSeries", width=700) )
-        ),
-        fluidRow(
-          box(radioButtons(inputId = "graph",
-                         "그래프를 고르세요",width=250,
-                         choices=c("WordCloud","TreeMap")), width=1),
-          box(title="서울시 구별 유동인구", status="primary",solidHeader=TRUE,collapsible=TRUE,
-              plotOutput(outputId = "graph_out", width=600)))
-          
-          # tabBox(
-          #   title="서울시 구별 유동인구", side="right", 
-          #   id="tab",
-          #   tabPanel("WordCloud", plotOutput("wordcloud")),
-          #   tabPanel("TreeMap", plotlyOutput("treemap"))
-          # )
-        ),
+              fluidRow(h3(" - 서울시 공공와이파이 서비스 위치 정보"),
+                       column(7,                   # 행렬 기준 열의 너비 지정
+                        box(selectInput(inputId = "year",
+                            "연도를 고르세요",
+                            width=400,
+                            list(2019,2020,2021)), width=3),
+                        box(title="서울시 자치구별 공공와이파이",status="primary",solidHeader=TRUE,collapsible=TRUE,
+                            plotOutput(outputId = "map", width=400),width=7)),
+                       
+                       column(4, offset = -10,
+                              imageOutput("image"))),
+              
+              fluidRow(h3(" - 행정동별 서울생활인구(내국인)"),
+                       column(8,                      # 행렬 기준 열의 너비 지정
+                        box(radioButtons(inputId = "graph",
+                            "그래프를 고르세요",width=400,
+                            choices=c("WordCloud","TreeMap")), width=3),
+                        box(title="서울시 자치구별 유동인구", status="primary",solidHeader=TRUE,collapsible=TRUE,
+                            plotOutput(outputId = "graph_out", width=400))),
+                      column(4,offset = -10,
+                                plotOutput(outputId = "pieChart", width = 400))
+              ),
       tabItem(tabName = "INSIGHT",
               fluidRow(
                 box(
@@ -89,11 +85,7 @@ ui <- dashboardPage(
   )
 )
 )
-      
-      
-      
-      
-      
+           
 
 "server <- function(input, output) {
   output$map=renderPlot({
@@ -119,6 +111,13 @@ server <- function(input, output) {
 
   })
   
+  ## image
+  # Render Image File
+  output$image = renderImage({
+    list(src = "년도별wifi설치.png")
+  }, deleteFile = FALSE)
+  
+  ## WordCloud, Treemap
   output$map=renderPlot({
 #    options(repr.plot.width = 300, repr.plot.height = 100)
     print(plot())
@@ -131,6 +130,14 @@ server <- function(input, output) {
       create_treemap()
     }
   })
+  
+  ## Piechart
+  output$pieChart <- renderPlot({
+    circle <- table(pop_rank5$name)
+    label <- paste(pop_rank5$name, "\n", pop_rank5$sum_population)
+    pie(circle, labels=label, main = "서울시 내 자치구 총생활인구 top5")
+  })
+  
   output$ratio=renderPlot({
     #barplot(ratio~자치구,wifi_pop[wifi_pop$year==input$year,], main=input$year,xlab="자치구", ylab="누적 설치 수/생활인구 수", col=rainbow(5))
     y=input$year_i
