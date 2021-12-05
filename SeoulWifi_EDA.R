@@ -1,5 +1,5 @@
-# 무료 와이파이 현황(개방표준)
-# 2. EDA 탐색과정 
+# 2. EDA 탐색과정 ####
+# 서울시 공공와이파이 서비스 위치 정보 #### 
 
 library(dplyr)
 
@@ -10,7 +10,7 @@ dim(SeoulWifi.df)
 SeoulWifi.df$id<-as.numeric(SeoulWifi.df$id)
 View(SeoulWifi.df)
 
-## 년도 고려하여 자치구 상관없이 공공와이파이 설치현황
+## 년도 고려하여 자치구 상관없이 공공와이파이 설치현황 
 gu_year <- SeoulWifi.df %>% 
   group_by(설치년도) %>% 
   summarise(누적설치수 = sum(n()))
@@ -45,6 +45,7 @@ gu_2019 <- SeoulWifi.df %>%
   group_by(자치구) %>% 
   summarise(n=n())
 View(gu_2019)
+
 ## 2019년 누적 히스토그램
 ggplot(data= gu_2019, aes(x = reorder(자치구,-n), y=n)) +geom_col() + labs(title="2019년 wifi 누적")
 
@@ -113,4 +114,3 @@ View(seoul_map)
 merge <- merge(seoul_map, gu_count, by='id')
 
 save(merge, file="Wifi_map_merge.rda")
-
