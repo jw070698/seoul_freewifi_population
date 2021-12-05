@@ -85,18 +85,13 @@ ui <- dashboardPage(
                             plotOutput(outputId = "ratio", width = 1300), width=10)
                       ),
                       fluidRow(
-                        column(width=4,
+                        column(width=3,
                                box(title="Top 5",
-                                   tableOutput(outputId = "top"))
-                      )
-                      ),
-                      fluidRow(
-                        column(width=4,
+                                   tableOutput(outputId = "top")),
                                box(title="Least 5",
                                    tableOutput(outputId = "least"))
                       )
-               
-              )
+                      )
       )
     )
   )
@@ -153,7 +148,7 @@ server <- function(input, output) {
     output$least=renderTable({
       wifi_pop_y<-wifi_pop[wifi_pop$year==2021,]
       wifi_pop_order<-wifi_pop_y[order(wifi_pop_y$ratio, decreasing = FALSE),]
-      wifi_pop_order[1:5,4]
+      wifi_pop_order[1:5,4]}, colnames = FALSE, align = "c"
       
       
       
@@ -162,12 +157,12 @@ server <- function(input, output) {
       # wifi_pop_order<-wifi_pop_y[order(wifi_pop_y$ratio, decreasing = FALSE),]
       # datatable(wifi_pop_order[1:5,])
       # print("안녀아세요")
-    })
+    )
     output$top=renderTable({
       wifi_pop_y<-wifi_pop[wifi_pop$year==2021,]
       wifi_pop_order<-wifi_pop_y[order(wifi_pop_y$ratio, decreasing = TRUE),]
-      wifi_pop_order[1:5,4]
-    })
+      wifi_pop_order[1:5,4]}, colnames = FALSE
+    )
   }
   
   
