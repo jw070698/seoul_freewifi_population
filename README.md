@@ -21,6 +21,7 @@
   - 행정동별 서울생활인구(내국인)
     - Seoulpopulation_Scrapping.R : 행정동별 서울생활인구(내국인) 스크래핑
     - Seoulpopulation.csv : 스크래핑되어 저장된 데이터 
+    - pop_rank5.csv : 생활인구 상위 5개의 자치구 추출한 데이터
 
 - step2 : 공공데이터 기초 탐색
   - 서울시 공공와이파이 서비스 위치 정보
