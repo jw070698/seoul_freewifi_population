@@ -30,6 +30,7 @@
 
 - step3 : 대시보드 생성
   - Wifi_map_merge.rda, gu_count.rda, gu_name.csv : 대시보드 파일 로드 과정에 필요
+  - TL_SCCO_SIG~ : 대시보드 패키지 실행에 필요
   - DashBoard_new.R 
     1. 서울시의 자치구별 공공와이파이 설치 현황을 나타낸 지도</br>
     <img src="https://user-images.githubusercontent.com/75953480/144628706-f7e3bea1-2baa-41c1-bfd0-edb213c158c8.png" width="400" height="250"/></br>
